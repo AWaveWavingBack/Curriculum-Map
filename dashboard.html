@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260810-05-2b86cd6","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+    .course-node { transition: all 0.2s ease; cursor: pointer; }
+    .course-node:hover { transform: scale(1.05); filter: brightness(1.2); }
+    .course-node.dimmed { opacity: 0.3; }
+    .course-node.hidden { display: none; }
+    .connector.hidden { display: none; }
+    .connector.dimmed { opacity: 0.1 !important; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .yr-btn.active { background: #6366f1; color: #fff; }
+    .tip-message {
+      margin-top: 8px;
+      font-size: 13px;
+      font-style: italic;
+      color: #888;       
+      background: none;
+      border: none;
+      text-align: left;  
+      max-width: 1100px; 
+      margin-left: 20;
+      margin-right: 0;
+}
+  </style>
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen text-gray-100" style="background: rgb(15, 17, 23);">
+  <header class="border-b border-gray-800">
+   <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <h1 data-template-id="dashboard-title" class="canva-text font-bold text-xl" style="color: rgb(255, 255, 255); font-weight: bold; font-style: normal; font-size: 32px;">BS Mechanical Engineering</h1>
+    <div class="flex gap-2"><button id="nav-flowchart" class="px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium text-sm" onclick="showPage('flowchart')">Curriculum</button> <button id="nav-profile" class="px-4 py-2 rounded-lg bg-gray-800 text-gray-300 font-medium text-sm" onclick="showPage('profile')">Profile</button>
+    </div>
+   </nav>
+  </header>
+  <main class="max-w-7xl mx-auto px-6 py-6">
+   <div id="page-flowchart" class="page active">
+    <div class="flex items-center gap-3 mb-6 flex-wrap"><span data-template-id="filter-label" class="canva-text text-sm text-gray-400 font-medium" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Filter by Year:</span> <button class="yr-btn active px-3 py-1.5 rounded-md text-sm font-medium bg-gray-800 text-gray-300" onclick="filterYear('all')">All</button> <button class="yr-btn px-3 py-1.5 rounded-md text-sm font-medium bg-gray-800 text-gray-300" onclick="filterYear(1)">1st Year</button> <button class="yr-btn px-3 py-1.5 rounded-md text-sm font-medium bg-gray-800 text-gray-300" onclick="filterYear(2)">2nd Year</button> <button class="yr-btn px-3 py-1.5 rounded-md text-sm font-medium bg-gray-800 text-gray-300" onclick="filterYear(3)">3rd Year</button> <button class="yr-btn px-3 py-1.5 rounded-md text-sm font-medium bg-gray-800 text-gray-300" onclick="filterYear(4)">4th Year</button>
+    </div>
+    <div class="flex flex-wrap gap-4 mb-4 text-xs"><span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded" style="background:#6366f1"></span> Math</span> <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded" style="background:#f97316"></span> Engineering</span> <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded" style="background:#a855f7"></span> General Education</span> <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded" style="background:#10b981"></span> PE / NSTP</span> <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded" style="background:#14b8a6"></span> Science</span> <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded" style="background:#ec4899"></span> Electronics</span>
+    </div>
+    <div class="flex gap-6">
+     <div id="flowchart-container" class="flex-1 relative w-full overflow-x-auto pb-4">
+      <div id="flowchart" class="relative min-w-[1100px]" style="min-height:900px;">
+       <svg id="connectors-svg" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:1;"></svg>
+       <div id="nodes-container" class="relative" style="z-index:2;"></div>
+      </div>
+     </div>
+     <div id="detail-panel" class="hidden w-80 flex-shrink-0 rounded-xl border border-gray-700 bg-gray-900 p-6 h-fit sticky top-6">
+      <div class="flex items-start justify-between mb-4">
+       <div>
+        <h3 id="detail-title" class="text-lg font-bold text-white"></h3>
+        <p id="detail-code" class="text-sm text-indigo-400 font-medium"></p>
+       </div><button onclick="closeDetail()" class="text-gray-500 hover:text-white"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+      </div>
+      <p id="detail-desc" class="text-sm text-gray-400 mb-4"></p>
+      <div class="space-y-4">
+       <div>
+        <h4 class="text-xs uppercase tracking-wider text-gray-500 mb-2 font-medium">Prerequisites</h4>
+        <div id="detail-prereqs" class="flex flex-wrap gap-1"></div>
+       </div>
+       <div>
+        <h4 class="text-xs uppercase tracking-wider text-gray-500 mb-2 font-medium">Corequisites</h4>
+        <div id="detail-coreqs" class="flex flex-wrap gap-1"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="tip-message">
+       Tip: The courses listed above are clickable — tap any course to view its details.
+    </div>
+   </div>
+   <div id="page-profile" class="page">
+    <div class="max-w-2xl mx-auto">
+     <div data-template-id="profile-card" class="canva-card rounded-2xl p-8 text-center border border-gray-800" style="background: rgb(26, 29, 39);">
+      <h2 data-template-id="student-name" class="canva-text text-2xl font-bold mb-1" style="color: rgb(255, 255, 255); font-weight: bold; font-style: normal; font-size: 24px;">Benjamin Caceres</h2>
+      <p data-template-id="student-program" class="canva-text text-indigo-400 font-medium mb-1" style="color: rgb(129, 140, 248); font-weight: 500; font-style: normal; font-size: 16px;">BS Mechanical Engineering</p>
+      <p data-template-id="student-id" class="canva-text text-gray-500 text-sm mb-6" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Section: A30</p>
+      <div class="grid grid-cols-2 gap-4">
+       <div class="bg-gray-800 rounded-xl p-4">
+        <p class="text-2xl font-bold text-emerald-400">208</p>
+        <p data-template-id="units-label" class="canva-text text-xs text-gray-500 mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Required Units</p>
+       </div>
+       <div class="bg-gray-800 rounded-xl p-4">
+        <p class="text-2xl font-bold text-amber-400">2026</p>
+        <p data-template-id="year-label" class="canva-text text-xs text-gray-500 mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Curriculum Year</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </main>
+  <script src="/_sdk/b8fc9aac2a1ee7fa.editing_sdk.js" integrity="sha512-0BDfjlda5WnGBb/gQP/bLynj6/01veZ9b+fYg78jNuknRGKsUHsXKtTCAOVAPQK2g457p9USMdsRyZFo8+UgRA=="></script>
+  <script>
+    const courses = [
+      // Year 1 Quarter 1
+      {id:'FW01-2',name:'Physical Activities Toward Health & Fitness 1 (PATHFIT 1)',qtr:1,year:1,prereqs:[],coreqs:[],cat:'pe'},
+      {id:'GED101',name:'Understanding the Self',qtr:1,year:1,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'GED108',name:'Art Appreciation',qtr:1,year:1,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'MATH165',name:'College Algebra with Analytic Geometry',qtr:1,year:1,prereqs:[],coreqs:[],cat:'math'},
+      {id:'MATH166',name:'College Trigonometry with Solid Mensuration',qtr:1,year:1,prereqs:[],coreqs:[],cat:'math'},
+      {id:'ME112',name:'Orientation to Mechanical Engineering',qtr:1,year:1,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'NSTP100',name:'National Service Training Program 1',qtr:1,year:1,prereqs:[],coreqs:[],cat:'pe'},
+      {id:'SFTY100',name:'Safety Engineering Management',qtr:1,year:1,prereqs:[],coreqs:[],cat:'eng'},
+      // Year 1 Quarter 2
+      {id:'CM0111',name:'General Chemistry for Engineers (Lecture)',qtr:2,year:1,prereqs:[],coreqs:[],cat:'sci'},
+      {id:'CM0111L',name:'General Chemistry Laboratory',qtr:2,year:1,prereqs:[],coreqs:['CM0111'],cat:'sci'},
+      {id:'FW02-2',name:'PATHFIT 2 – Exercise-Based Fitness Activities',qtr:2,year:1,prereqs:['FW01-2'],coreqs:[],cat:'pe'},
+      {id:'GED103',name:'Readings in Philippine History',qtr:2,year:1,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'MATH170',name:'Linear Algebra with Computer Applications',qtr:2,year:1,prereqs:['MATH165'],coreqs:[],cat:'math'},
+      {id:'MATH176',name:'Calculus 1',qtr:2,year:1,prereqs:['MATH165','MATH166'],coreqs:[],cat:'math'},
+      {id:'ME123L-1',name:'Mechanical Processes 1 – Workshop Theory & Practice',qtr:2,year:1,prereqs:['SFTY100'],coreqs:[],cat:'eng'},
+      {id:'NSTP200',name:'National Service Training Program 2',qtr:2,year:1,prereqs:['NSTP100'],coreqs:[],cat:'pe'},
+      // Year 1 Quarter 3
+      {id:'FW03-2',name:'PATHFIT 3 – Dance/Martial Arts',qtr:3,year:1,prereqs:['FW02-2'],coreqs:[],cat:'pe'},
+      {id:'GED102',name:'Mathematics in the Modern World',qtr:3,year:1,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'GED104',name:'Science, Technology & Society',qtr:3,year:1,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'GED107',name:'Ethics',qtr:3,year:1,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'MATH177',name:'Calculus 2',qtr:3,year:1,prereqs:['MATH176'],coreqs:[],cat:'math'},
+      {id:'ME137L-5',name:'Mechanical Processes 2 – Workshop Theory & Practice',qtr:3,year:1,prereqs:['ME123L-1'],coreqs:[],cat:'eng'},
+      {id:'NSTP300',name:'National Service Training Program 3',qtr:3,year:1,prereqs:['NSTP200'],coreqs:[],cat:'pe'},
+      // Year 1 Quarter 4
+      {id:'DRAW10W-1',name:'Engineering Drawing and Plans',qtr:4,year:1,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'FW04-2',name:'PATHFIT 4 – Group Exercise',qtr:4,year:1,prereqs:['FW03-2'],coreqs:[],cat:'pe'},
+      {id:'GED131',name:'Environmental Science & Sustainability',qtr:4,year:1,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'MATH178',name:'Calculus 3',qtr:4,year:1,prereqs:['MATH177'],coreqs:[],cat:'math'},
+      {id:'MATH179',name:'Differential Equations',qtr:4,year:1,prereqs:['MATH177'],coreqs:[],cat:'math'},
+      {id:'NSTP400',name:'National Service Training Program 4',qtr:4,year:1,prereqs:['NSTP300'],coreqs:[],cat:'pe'},
+      {id:'PHY101',name:'Physics for Engineers 1',qtr:4,year:1,prereqs:['MATH176'],coreqs:[],cat:'sci'},
+      {id:'PHY101L',name:'Physics for Engineers Laboratory 1',qtr:4,year:1,prereqs:['MATH176'],coreqs:[],cat:'sci'},
+
+      // Year 2 Quarter 1
+      {id:'CAD101-1',name:'Computer-Aided Drafting',qtr:1,year:2,prereqs:['DRAW10W-1'],coreqs:[],cat:'eng'},
+      {id:'EE211-2',name:'Basic Electrical Engineering',qtr:1,year:2,prereqs:['MATH177','PHY104','PHY104L'],coreqs:[],cat:'elec'},
+      {id:'EE211L-2',name:'Basic Electrical Engineering Laboratory',qtr:1,year:2,prereqs:['MATH177','PHY104','PHY104L'],coreqs:['EE211-2','PHY105'],cat:'elec'},
+      {id:'ME131-5',name:'Thermodynamics 1',qtr:1,year:2,prereqs:['CM011','MATH177','PHY104'],coreqs:[],cat:'eng'},
+      {id:'MEC30-5',name:'Statics of Rigid Bodies',qtr:1,year:2,prereqs:['MATH177','PHY104L'],coreqs:[],cat:'eng'},
+      {id:'PHY105',name:'Physics for Engineers 2',qtr:1,year:2,prereqs:['PHY104','PHY104L'],coreqs:['PHY105L'],cat:'sci'},
+      {id:'PHY105L',name:'Physics for Engineers Laboratory 2',qtr:1,year:2,prereqs:['PHY104','PHY104L'],coreqs:['PHY105'],cat:'sci'},
+      // Year 2 Quarter 2
+      {id:'ECE20-2',name:'Basic Electronics',qtr:2,year:2,prereqs:['MATH177','PHY104','PHY104L'],coreqs:[],cat:'elec'},
+      {id:'ECE20L-2',name:'Basic Electronics Laboratory',qtr:2,year:2,prereqs:['MATH177','PHY104','PHY104L'],coreqs:['ECE20-2'],cat:'elec'},
+      {id:'GED133',name:'Professional Communication',qtr:2,year:2,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'MATH180',name:'Engineering Data Analysis',qtr:2,year:2,prereqs:['MATH177'],coreqs:[],cat:'math'},
+      {id:'ME133-5',name:'Thermodynamics 2',qtr:2,year:2,prereqs:['ME131-5'],coreqs:[],cat:'eng'},
+      {id:'ME50-5',name:'Advanced Engineering Mathematics',qtr:2,year:2,prereqs:['MATH179'],coreqs:[],cat:'math'},
+      // Year 2 Quarter 3
+      {id:'AIE10',name:'Introduction to Artificial Intelligence and Data Science',qtr:3,year:2,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'CPE101-1',name:'Fundamentals of Object-Oriented Programming Laboratory',qtr:3,year:2,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'ME101-5',name:'Safety Engineering for Mechanical Engineers',qtr:3,year:2,prereqs:['ME137L-5'],coreqs:[],cat:'eng'},
+      {id:'ME130-5',name:'Fluid Mechanics for Mechanical Engineers',qtr:3,year:2,prereqs:['ME131-5'],coreqs:[],cat:'eng'},
+      {id:'ME135-5',name:'Heat Transfer',qtr:3,year:2,prereqs:['ME131-5'],coreqs:[],cat:'eng'},
+      {id:'ME55-5',name:'Mathematical Modeling and Problem Solving',qtr:3,year:2,prereqs:['MATH178'],coreqs:[],cat:'math'},
+      {id:'MEC31-5',name:'Dynamics of Rigid Bodies',qtr:3,year:2,prereqs:['MEC30-5'],coreqs:[],cat:'eng'},
+      {id:'RES101-5',name:'Methods of Research for Mechanical Engineering',qtr:3,year:2,prereqs:['GED104','GED107','MATH180'],coreqs:[],cat:'ge'},
+      // Year 2 Quarter 4
+      {id:'EE22-2',name:'DC/AC Machinery',qtr:4,year:2,prereqs:['EE21-2'],coreqs:[],cat:'elec'},
+      {id:'EE22L-2',name:'DC/AC Machinery Laboratory',qtr:4,year:2,prereqs:['EE21L-2'],coreqs:['EE22-2'],cat:'elec'},
+      {id:'IE103-1',name:'Technopreneurship 101',qtr:4,year:2,prereqs:['RES101-5'],coreqs:[],cat:'ge'},
+      {id:'ME134-5',name:'Combustion Engineering',qtr:4,year:2,prereqs:['ME133-5'],coreqs:[],cat:'eng'},
+      {id:'ME134-5X',name:'Thermo-Fluids Engineering Exit Exam',qtr:4,year:2,prereqs:['ME130-5','ME135-5'],coreqs:['ME134-5'],cat:'eng'},
+      {id:'ME139L-5',name:'Mechanical Engineering Laboratory 1',qtr:4,year:2,prereqs:['ME130-5','ME133-5'],coreqs:[],cat:'eng'},
+      {id:'MEC32-5',name:'Mechanics of Deformable Bodies',qtr:4,year:2,prereqs:['MEC31-5'],coreqs:[],cat:'eng'},
+
+      // Year 3 Quarter 1
+      {id:'ME134L-5',name:'Computer Applications in Mechanical Engineering',qtr:1,year:3,prereqs:['MATH180','MEC30-5'],coreqs:[],cat:'eng'},
+      {id:'ME141-5',name:'Refrigeration System',qtr:1,year:3,prereqs:['ME133-5','ME135-5'],coreqs:[],cat:'eng'},
+      {id:'ME143-5',name:'Fluid Machinery',qtr:1,year:3,prereqs:['CAD101-1','ME130-5','ME131-5'],coreqs:[],cat:'eng'},
+      {id:'ME141L-5',name:'Mechanical Engineering Laboratory 2',qtr:1,year:3,prereqs:['ME135-5','ME139L-5'],coreqs:[],cat:'eng'},
+      {id:'ME146-5',name:'Vibration Engineering',qtr:1,year:3,prereqs:['ME50-5'],coreqs:[],cat:'eng'},
+      {id:'ME170-5',name:'ME Laws, Ethics, Contracts, Codes & Standards',qtr:1,year:3,prereqs:['GED107','IE103-1'],coreqs:[],cat:'eng'},
+      {id:'ME60P-5',name:'Numerical Methods',qtr:1,year:3,prereqs:['ME50-5'],coreqs:[],cat:'math'},
+      // Year 3 Quarter 2
+      {id:'ME136P-5',name:'Engineering Materials, Processes and Testing',qtr:2,year:3,prereqs:['ME137L-5','MEC32-5'],coreqs:[],cat:'eng'},
+      {id:'ME138P-5',name:'Machine Elements',qtr:2,year:3,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'ME148F-5',name:'Industrial Processes with Seminars or Field Trip',qtr:2,year:3,prereqs:['ME101-5'],coreqs:[],cat:'eng'},
+      {id:'ME150P-5',name:'Air Conditioning and Ventilation Systems',qtr:2,year:3,prereqs:['ME141-5','ME143-5'],coreqs:[],cat:'eng'},
+      {id:'ME152-5',name:'Power Plant Engineering 1',qtr:2,year:3,prereqs:['ME134-5','ME134-5X','ME143-5'],coreqs:[],cat:'eng'},
+      {id:'ME152L-5',name:'Mechanical Engineering Laboratory 3',qtr:2,year:3,prereqs:['ME143-5','ME141L-5'],coreqs:['ME150P-5'],cat:'eng'},
+      {id:'SGE100X',name:'Student Global Experience',qtr:2,year:3,prereqs:[],coreqs:[],cat:'ge'},
+      // Year 3 Quarter 3
+      {id:'EMG22-2',name:'Engineering Management',qtr:3,year:3,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'ME140-5',name:'Engineering Economy',qtr:3,year:3,prereqs:['MATH180'],coreqs:[],cat:'eng'},
+      {id:'ME147-5',name:'Machine Design 1',qtr:3,year:3,prereqs:['ME136P-5','ME138P-5'],coreqs:[],cat:'eng'},
+      {id:'ME160P-5',name:'Instrumentation and Control Engineering',qtr:3,year:3,prereqs:['ECE20-2','ECE20L-2','EE22-2','EE22L-2'],coreqs:[],cat:'eng'},
+      // Year 3 Quarter 4
+      {id:'GED109',name:'Gender and Society',qtr:4,year:3,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'ME143-5X',name:'Mechanical Design Exit Exam',qtr:4,year:3,prereqs:['ME147-5'],coreqs:['ME151P-5'],cat:'eng'},
+      {id:'ME147-5X',name:'Power Plant Engineering Exit Exam',qtr:4,year:3,prereqs:['ME152-5'],coreqs:['ME152P-5'],cat:'eng'},
+      {id:'ME149-5X',name:'Industrial Plant Engineering Exit Exam',qtr:4,year:3,prereqs:['ME150P-5'],coreqs:[],cat:'eng'},
+      {id:'ME151P-5',name:'Machine Design 2',qtr:4,year:3,prereqs:['ME147-5'],coreqs:[],cat:'eng'},
+      {id:'ME152P-5',name:'Power Plant Engineering 2 with Renewable Energy Sources',qtr:4,year:3,prereqs:['ME152-5'],coreqs:[],cat:'eng'},
+      {id:'RZL110',name:'The Life and Works of Rizal',qtr:4,year:3,prereqs:[],coreqs:[],cat:'ge'},
+
+      // Year 4 Quarter 1
+      {id:'GED106',name:'Purpose Communication',qtr:1,year:4,prereqs:['ME148F-5','ME150P-5'],coreqs:[],cat:'ge'},
+      {id:'ME158P-5',name:'Industrial Plant Engineering',qtr:1,year:4,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'ME199R-4',name:'On the Job Training 1',qtr:1,year:4,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'ME200L-5',name:'Thesis 1',qtr:1,year:4,prereqs:['RES101-5'],coreqs:[],cat:'eng'},
+      // Year 4 Quarter 2
+      {id:'GED105',name:'The Contemporary World',qtr:2,year:4,prereqs:[],coreqs:[],cat:'ge'},
+      {id:'ME198D-5',name:'Applied Mechanical Engineering',qtr:2,year:4,prereqs:['ME143-5X','ME147-5X','ME149-5X','ME151P-5','ME152P-5','ME158P-5'],coreqs:[],cat:'eng'},
+      {id:'ME199R-5',name:'On the Job Training 2',qtr:2,year:4,prereqs:[],coreqs:[],cat:'eng'},
+      {id:'ME201L-5',name:'Thesis 2 – Final Defense',qtr:2,year:4,prereqs:['ME200L-5'],coreqs:[],cat:'eng'},
+    ];
+
+    const catColors = { math:'#6366f1', eng:'#f97316', ge:'#a855f7', pe:'#10b981', sci:'#14b8a6', elec:'#ec4899' };
+    let currentFilter = 'all';
+    let selectedCourse = null;
+
+    function renderFlowchart() {
+      const container = document.getElementById('nodes-container');
+      const svg = document.getElementById('connectors-svg');
+      container.innerHTML = '';
+      svg.innerHTML = '';
+
+      // Group by year then quarter
+      const yearQtrGroups = {};
+      courses.forEach(c => {
+        const key = `${c.year}-${c.qtr}`;
+        if (!yearQtrGroups[key]) yearQtrGroups[key] = [];
+        yearQtrGroups[key].push(c);
+      });
+
+      // Layout: each year-quarter combo is a column
+      const colKeys = [];
+      [1,2,3,4].forEach(y => [1,2,3,4].forEach(q => {
+        const key = `${y}-${q}`;
+        if (yearQtrGroups[key]) colKeys.push(key);
+      }));
+
+      const positions = {};
+      const colWidth = 210;
+
+      colKeys.forEach((key, ci) => {
+        const group = yearQtrGroups[key];
+        group.forEach((course, ri) => {
+          const x = ci * colWidth + 20;
+          const y = ri * 80 + 50;
+          const color = catColors[course.cat];
+          const node = document.createElement('div');
+          node.className = 'course-node absolute rounded-lg px-2 py-1.5 text-xs font-medium border';
+          node.dataset.courseId = course.id;
+          node.dataset.year = course.year;
+          node.style.cssText = `left:${x}px;top:${y}px;width:170px;background:${color}18;border-color:${color};color:${color};`;
+          node.innerHTML = `<div class="font-bold text-[10px]">${course.id}</div>`;
+          node.onclick = () => toggleDetail(course);
+          container.appendChild(node);
+          positions[course.id] = { x, y, w:170, h:32 };
+        });
+      });
+
+      // Add column headers
+      colKeys.forEach((key, ci) => {
+        const [y,q] = key.split('-');
+        const label = document.createElement('div');
+        label.className = 'absolute text-[10px] font-bold text-gray-500 uppercase tracking-wider';
+        label.style.cssText = `left:${ci * colWidth + 20}px;top:10px;`;
+        label.textContent = `Y${y} Q${q}`;
+        container.appendChild(label);
+      });
+
+      const maxY = Math.max(...Object.values(positions).map(p => p.y + p.h), 0);
+      document.getElementById('flowchart').style.minHeight = (maxY + 80) + 'px';
+      document.getElementById('flowchart').style.minWidth = (colKeys.length * colWidth + 40) + 'px';
+
+      courses.forEach(course => {
+        [...course.prereqs, ...course.coreqs].forEach(pid => {
+          if (!positions[pid] || !positions[course.id]) return;
+          const from = positions[pid], to = positions[course.id];
+          const x1 = from.x + from.w, y1 = from.y + from.h/2;
+          const x2 = to.x, y2 = to.y + to.h/2;
+          const mx = (x1+x2)/2;
+          const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+          path.setAttribute('d',`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`);
+          path.setAttribute('stroke', catColors[course.cat]);
+          path.setAttribute('stroke-width','1.5');
+          path.setAttribute('fill','none');
+          path.setAttribute('opacity','0.3');
+          path.setAttribute('class','connector');
+          path.dataset.from = pid;
+          path.dataset.to = course.id;
+          svg.appendChild(path);
+        });
+      });
+    }
+
+    function filterYear(y) {
+      currentFilter = y;
+      document.querySelectorAll('.yr-btn').forEach((b,i) => {
+        const vals = ['all',1,2,3,4];
+        b.classList.toggle('active', vals[i] === y);
+      });
+      closeDetail();
+      const visibleCourses = new Set();
+      courses.forEach(c => {
+        const show = y === 'all' || c.year === y;
+        if (show) visibleCourses.add(c.id);
+      });
+      document.querySelectorAll('.course-node').forEach(node => {
+        const yr = parseInt(node.dataset.year);
+        const shouldDim = y !== 'all' && yr !== y;
+        node.classList.toggle('dimmed', shouldDim);
+      });
+      document.querySelectorAll('.connector').forEach(line => {
+        const fromVisible = visibleCourses.has(line.dataset.from);
+        const toVisible = visibleCourses.has(line.dataset.to);
+        const shouldDim = !(fromVisible && toVisible);
+        line.classList.toggle('dimmed', shouldDim);
+      });
+    }
+
+    function toggleDetail(course) {
+      if (selectedCourse && selectedCourse.id === course.id) { closeDetail(); return; }
+      selectedCourse = course;
+      document.getElementById('detail-panel').classList.remove('hidden');
+      document.getElementById('detail-title').textContent = course.name;
+      document.getElementById('detail-code').textContent = course.id;
+      document.getElementById('detail-desc').textContent = course.desc;
+
+      const tag = id => `<span class="inline-block bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded">${id}</span>`;
+      document.getElementById('detail-prereqs').innerHTML = course.prereqs.length ? course.prereqs.map(tag).join(' ') : '<span class="text-xs text-gray-600">None</span>';
+      document.getElementById('detail-coreqs').innerHTML = course.coreqs.length ? course.coreqs.map(tag).join(' ') : '<span class="text-xs text-gray-600">None</span>';
+
+      const hl = new Set([course.id, ...course.prereqs, ...course.coreqs]);
+      document.querySelectorAll('.course-node').forEach(n => n.classList.toggle('dimmed', !hl.has(n.dataset.courseId)));
+      document.querySelectorAll('.connector').forEach(l => l.classList.toggle('dimmed', !(hl.has(l.dataset.from) && hl.has(l.dataset.to))));
+      lucide.createIcons();
+    }
+
+    function closeDetail() {
+      selectedCourse = null;
+      document.getElementById('detail-panel').classList.add('hidden');
+      document.querySelectorAll('.course-node').forEach(n => n.classList.remove('dimmed'));
+      document.querySelectorAll('.connector').forEach(l => l.classList.remove('dimmed'));
+      // Reapply the current year filter to restore dimming state
+      const visibleCourses = new Set();
+      courses.forEach(c => {
+        const show = currentFilter === 'all' || c.year === currentFilter;
+        if (show) visibleCourses.add(c.id);
+      });
+      document.querySelectorAll('.course-node').forEach(node => {
+        const yr = parseInt(node.dataset.year);
+        const shouldDim = currentFilter !== 'all' && yr !== currentFilter;
+        node.classList.toggle('dimmed', shouldDim);
+      });
+      document.querySelectorAll('.connector').forEach(line => {
+        const fromVisible = visibleCourses.has(line.dataset.from);
+        const toVisible = visibleCourses.has(line.dataset.to);
+        const shouldDim = !(fromVisible && toVisible);
+        line.classList.toggle('dimmed', shouldDim);
+      });
+    }
+
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-'+page).classList.add('active');
+      document.getElementById('nav-flowchart').className = `px-4 py-2 rounded-lg font-medium text-sm ${page==='flowchart'?'bg-indigo-600 text-white':'bg-gray-800 text-gray-300'}`;
+      document.getElementById('nav-profile').className = `px-4 py-2 rounded-lg font-medium text-sm ${page==='profile'?'bg-indigo-600 text-white':'bg-gray-800 text-gray-300'}`;
+    }
+
+    renderFlowchart();
+    lucide.createIcons();
+  </script>
+
+</body></html>
